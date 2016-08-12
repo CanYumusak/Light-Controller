@@ -18,19 +18,15 @@
 package tv.piratemedia.lightcontroler;
 
 import android.app.PendingIntent;
-import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -40,12 +36,15 @@ import android.widget.RemoteViews;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
+
 public class controlWidgetProvider extends AppWidgetProvider {
 
     private static final int LIGHT_ON = 0;
     private static final int LIGHT_OFF = 1;
 
-    private controlCommands Controller;
+    private ControlCommands Controller;
     private static AppWidgetManager aWM;
     private static ComponentName thisWidget;
 
@@ -245,7 +244,7 @@ public class controlWidgetProvider extends AppWidgetProvider {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            Controller = new controlCommands(context, null);
+            Controller = new UDPControlCommands(context, null);
 
             String action = intent.getAction();
             if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE)) {

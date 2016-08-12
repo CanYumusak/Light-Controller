@@ -13,6 +13,9 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
+
 
 /**
  * Implementation of App Widget functionality.
@@ -22,7 +25,7 @@ public class switchWidget extends AppWidgetProvider {
     private static final int LIGHT_ON = 0;
     private static final int LIGHT_OFF = 1;
 
-    private controlCommands Controller;
+    private ControlCommands Controller;
     private static RemoteViews remoteViews;
     private static AppWidgetManager aWM;
     private static ComponentName thisWidget;
@@ -141,7 +144,7 @@ public class switchWidget extends AppWidgetProvider {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Controller = new controlCommands(context, null);
+        Controller = new UDPControlCommands(context, null);
 
         String action = intent.getAction();
         if (intent.hasCategory(Intent.CATEGORY_ALTERNATIVE)) {

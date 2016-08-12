@@ -5,6 +5,8 @@ import android.util.Log;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+
 /*
 Created by Harry Sibenaler (mrwhale)
 */
@@ -20,8 +22,8 @@ public class DataLayerListenerService extends WearableListenerService {
         // Create a new controller instance so we can send commands to the wifi controller
         Log.d(TAG, "message received" + messageEvent.getPath());
         controller mCont = new controller();
-        controlCommands cmd;
-        cmd = new controlCommands(this, mCont.mHandler);
+        UDPControlCommands cmd;
+        cmd = new UDPControlCommands(this, mCont.mHandler);
         //A switch to find out what message was sent from the watch
         switch (messageEvent.getPath()){
             case "/0":

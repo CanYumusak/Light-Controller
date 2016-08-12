@@ -15,12 +15,9 @@ package tv.piratemedia.lightcontroler.receiver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -28,7 +25,8 @@ import tv.piratemedia.lightcontroler.Constants;
 import tv.piratemedia.lightcontroler.DataTypes.TaskerCommand;
 import tv.piratemedia.lightcontroler.bundle.BundleScrubber;
 import tv.piratemedia.lightcontroler.bundle.PluginBundleManager;
-import tv.piratemedia.lightcontroler.controlCommands;
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
 import tv.piratemedia.lightcontroler.ui.EditActivity;
 
 /**
@@ -76,8 +74,8 @@ public final class FireReceiver extends BroadcastReceiver
             System.out.println("starting");
             final String message = bundle.getString(PluginBundleManager.BUNDLE_EXTRA_STRING_MESSAGE);
 
-            controlCommands Controller;
-            Controller = new controlCommands(context, null);
+            ControlCommands Controller;
+            Controller = new UDPControlCommands(context, null);
 
             String[] _in = message.split(":");
             String[][] in = new String[_in.length][3];

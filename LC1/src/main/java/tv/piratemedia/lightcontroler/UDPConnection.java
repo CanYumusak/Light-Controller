@@ -17,8 +17,11 @@
 */
 package tv.piratemedia.lightcontroler;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
@@ -30,9 +33,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-import android.os.Build;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
 
 public class UDPConnection {
     public static String CONTROLLERIP = "";
@@ -141,13 +142,13 @@ public class UDPConnection {
                                 if(Data.startsWith("+ok")) {
                                     if(Data.startsWith("+ok=")) {
                                         Message m = new Message();
-                                        m.what = controlCommands.LIST_WIFI_NETWORKS;
+                                        m.what = ControlCommands.LIST_WIFI_NETWORKS;
                                         m.obj = Data;
                                         mHandler.sendMessage(m);
                                         Server_aktiv = false;
                                     } else {
                                         Message m = new Message();
-                                        m.what = controlCommands.COMMAND_SUCCESS;
+                                        m.what = ControlCommands.COMMAND_SUCCESS;
                                         mHandler.sendMessage(m);
                                         Server_aktiv = false;
                                     }
@@ -156,7 +157,7 @@ public class UDPConnection {
                                     if (parts.length > 1) {
                                         if (Utils.validIP(parts[0]) && Utils.validMac(parts[1])) {
                                             Message m = new Message();
-                                            m.what = controlCommands.DISCOVERED_DEVICE;
+                                            m.what = ControlCommands.DISCOVERED_DEVICE;
                                             m.obj = parts;
                                             mHandler.sendMessage(m);
                                             Server_aktiv = false;

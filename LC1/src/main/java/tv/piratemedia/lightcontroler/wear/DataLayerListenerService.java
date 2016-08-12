@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tv.piratemedia.lightcontroler.R;
-import tv.piratemedia.lightcontroler.controlCommands;
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
 import tv.piratemedia.lightcontroler.controller;
 
 public class DataLayerListenerService extends WearableListenerService {
@@ -45,8 +45,8 @@ public class DataLayerListenerService extends WearableListenerService {
         // if ("/MESSAGE".equals(messageEvent.getPath())) {
         // Create a new controller instance so we can send commands to the wifi controller
         controller mCont = new controller();
-        controlCommands cmd;
-        cmd = new controlCommands(this, mCont.mHandler);
+        UDPControlCommands cmd;
+        cmd = new UDPControlCommands(this, mCont.mHandler);
         //A switch to find out what message was sent from the watch
         if(messageEvent.getPath().equals("/zones")) {
             connectToWatch(getApplicationContext());

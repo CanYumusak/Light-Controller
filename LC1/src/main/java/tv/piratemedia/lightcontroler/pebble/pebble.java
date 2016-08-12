@@ -6,7 +6,7 @@ import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
 import com.getpebble.android.kit.util.PebbleDictionary;
 import java.util.UUID;
-import tv.piratemedia.lightcontroler.controlCommands;
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
 import tv.piratemedia.lightcontroler.controller;
 
 /*
@@ -44,8 +44,8 @@ Pebble related activities. Pass through context, and data receiver, so we can th
         // Create a new receiver to get AppMessages from the C app
         // Create a new controller instance so we can send commands to the wifi controller
         final controller mCont = new controller();
-        final controlCommands contCmd;
-        contCmd = new controlCommands(ctx, mCont.mHandler);
+        final UDPControlCommands contCmd;
+        contCmd = new UDPControlCommands(ctx, mCont.mHandler);
 
         PebbleDataReceiver dataReceiver = new PebbleDataReceiver(appUuid) {
 

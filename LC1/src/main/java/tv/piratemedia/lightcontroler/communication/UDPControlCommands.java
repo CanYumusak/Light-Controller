@@ -15,7 +15,7 @@
 *    You should have received a copy of the GNU General Public License
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-package tv.piratemedia.lightcontroler;
+package tv.piratemedia.lightcontroler.communication;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -29,10 +29,10 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class controlCommands {
-    public static final int DISCOVERED_DEVICE = 111;
-    public static final int LIST_WIFI_NETWORKS = 802;
-    public static final int COMMAND_SUCCESS = 222;
+import tv.piratemedia.lightcontroler.SaveState;
+import tv.piratemedia.lightcontroler.UDPConnection;
+
+public class UDPControlCommands implements ControlCommands {
 
     private UDPConnection UDPC;
     public int LastOn = -1;
@@ -43,17 +43,19 @@ public class controlCommands {
     public final int[] tolerance = new int[1];
     public SaveState appState = null;
 
-    public controlCommands(Context context, Handler handler) {
+    public UDPControlCommands(Context context, Handler handler) {
         UDPC = new UDPConnection(context, handler);
         mContext = context;
         tolerance[0] = 25000;
         appState = new SaveState(context);
     }
 
+    @Override
     public void killUDPC() {
         UDPC.destroyUDPC();
     }
 
+    @Override
     public void discover() {
         Log.d("discovery", "Start Discovery");
         try {
@@ -68,6 +70,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void getWifiNetworks() {
         try {
             UDPC.sendAdminMessage("+ok".getBytes(), true);
@@ -81,6 +84,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setWifiNetwork(String SSID, String Security, String Type, String Password) {
         try {
             UDPC.sendAdminMessage("+ok".getBytes(), true);
@@ -100,6 +104,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setWifiNetwork(String SSID) {
         try {
             UDPC.sendAdminMessage("+ok".getBytes(), true);
@@ -117,6 +122,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void LightsOn(int zone) {
         byte[] messageBA = new byte[3];
         switch(zone) {
@@ -168,6 +174,7 @@ public class controlCommands {
         appState.setOnOff(zone, true);
     }
 
+    @Override
     public void globalOn() {
         LightsOn(0);
         try {
@@ -178,6 +185,7 @@ public class controlCommands {
         LightsOn(5);
     }
 
+    @Override
     public void LightsOff(int zone) {
         byte[] messageBA = new byte[3];
         switch(zone) {
@@ -223,6 +231,7 @@ public class controlCommands {
         appState.setOnOff(zone, false);
     }
 
+    @Override
     public void globalOff() {
         LightsOff(0);
         try {
@@ -233,6 +242,7 @@ public class controlCommands {
         LightsOff(5);
     }
 
+    @Override
     public void setToWhite(int zone) {
         byte[] messageBA = new byte[3];
         switch(zone) {
@@ -263,6 +273,7 @@ public class controlCommands {
         appState.removeColor(zone);
     }
 
+    @Override
     public void setBrightnessUpOne() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 60;
@@ -276,6 +287,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setBrightnessDownOne() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 52;
@@ -289,6 +301,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setWarmthUpOne() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 62;
@@ -302,6 +315,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setWarmthDownOne() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 63;
@@ -315,6 +329,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setToFull(int zone) {
         LightsOn(zone);
         try {
@@ -350,6 +365,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void setColorToNight(int zone) {
         LightsOff(zone);
         try {
@@ -384,6 +400,7 @@ public class controlCommands {
             //add alert to tell user we cant send command
         }
     }
+    @Override
     public void setToNight(int zone) {
         LightsOn(zone);
         try {
@@ -424,6 +441,7 @@ public class controlCommands {
     private int LastZone = 0;
     private boolean finalSend = false;
     public boolean touching = false;
+    @Override
     public void setBrightness(int zoneid, int brightness) {
         if(brightness >= values.length) {
             brightness = values.length - 1;
@@ -455,6 +473,7 @@ public class controlCommands {
         LastZone = zoneid;
     }
 
+    @Override
     public void startTimeout() {
         Thread thread = new Thread()
         {
@@ -475,6 +494,7 @@ public class controlCommands {
         thread.start();
     }
 
+    @Override
     public void setColor(int zoneid, int color) {
         if(!sleeping) {
             float[] colors = new float[3];
@@ -507,6 +527,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void toggleDiscoMode(int zoneid) {
         LightsOn(zoneid);
         byte[] messageBA = new byte[3];
@@ -521,6 +542,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void discoModeFaster() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 68;
@@ -534,6 +556,7 @@ public class controlCommands {
         }
     }
 
+    @Override
     public void discoModeSlower() {
         byte[] messageBA = new byte[3];
         messageBA[0] = 67;
@@ -549,6 +572,7 @@ public class controlCommands {
 
     private String startCandleColor;
     private String endCandleColor;
+    @Override
     public void startCandleMode(final int zone) {
         candling = true;
         startCandleColor = "fffc00";
@@ -596,6 +620,7 @@ public class controlCommands {
         thread.start();
     }
 
+    @Override
     public void stopCandleMode() {
         candling = false;
     }
@@ -603,6 +628,7 @@ public class controlCommands {
     private MediaRecorder mr;
     private FileOutputStream fd;
     private int[] strobeColors = new int[4];
+    @Override
     public void startMeasuringVol(final int zone) {
         strobeColors[0] = Color.parseColor("#FF7400");
         strobeColors[1] = Color.parseColor("#FFAA00");
@@ -645,6 +671,7 @@ public class controlCommands {
         thread.start();
     }
 
+    @Override
     public void stopMeasuringVol() {
         measuring = false;
         try {

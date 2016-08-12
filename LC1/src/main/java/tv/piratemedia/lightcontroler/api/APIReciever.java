@@ -24,7 +24,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 import tv.piratemedia.lightcontroler.R;
-import tv.piratemedia.lightcontroler.controlCommands;
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
 
 public class APIReciever extends BroadcastReceiver {
     public static final String REQUEST_API_PERMISSION = "tv.piratemedia.lightcontroler.requestAPIPermission";
@@ -88,7 +89,7 @@ public class APIReciever extends BroadcastReceiver {
     }
 
     private void parseIntentRequest(Context context, Intent intent) {
-        controlCommands c = new controlCommands(context, null);
+        ControlCommands c = new UDPControlCommands(context, null);
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         switch (intent.getAction()) {
             case ACCEPT_APP_INTENT:
@@ -347,7 +348,7 @@ public class APIReciever extends BroadcastReceiver {
 
     @SuppressWarnings("InstanceVariableMayNotBeInitialized")
     private void FadeLights(final int Zone, final String Type, final Boolean in, int duration, Context context) {
-        final controlCommands c = new controlCommands(context, null);
+        final ControlCommands c = new UDPControlCommands(context, null);
         final int interval;
         final int Max;
         if(Type.equals(TYPE_COLOR)) {

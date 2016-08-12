@@ -20,29 +20,30 @@ package tv.piratemedia.lightcontroler;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Message;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.DisplayMetrics;
@@ -65,7 +66,6 @@ import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.support.v7.app.ActionBarActivity;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -85,9 +85,10 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.UUID;
 
+import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
+import tv.piratemedia.lightcontroler.communication.ControlCommands;
 import tv.piratemedia.lightcontroler.pebble.pebble;
 import tv.piratemedia.lightcontroler.wear.DataLayerListenerService;
-import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
 
 
 public class controller extends ActionBarActivity {
@@ -99,7 +100,7 @@ public class controller extends ActionBarActivity {
     private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
     final UUID appUuid = UUID.fromString("1d6c7f01-d948-42a6-aa4e-b2084210ebbc");
 
-    private static controlCommands Controller;
+    private static UDPControlCommands Controller;
     private static boolean micStarted = false;
     private static boolean candleMode = false;
     private static Context ctx;
@@ -134,7 +135,7 @@ public class controller extends ActionBarActivity {
         setupApp();
 
         mHandler = new MyHandler();
-        Controller = new controlCommands(this, mHandler);
+        Controller = new UDPControlCommands(this, mHandler);
         ctx = this;
         Intent i = new Intent(this, notificationService.class);
         i.setAction(notificationService.START_SERVICE);
@@ -161,13 +162,13 @@ public class controller extends ActionBarActivity {
     class MyHandler extends Handler {
         public void handleMessage(Message msg) {
             switch(msg.what) {
-                case controlCommands.DISCOVERED_DEVICE:
+                case ControlCommands.DISCOVERED_DEVICE:
                     String[] DeviceInfo = (String[])msg.obj;
                     String Mac = DeviceInfo[1];
                     String IP = DeviceInfo[0];
                     newDeviceFound(IP, Mac);
                     break;
-                case controlCommands.LIST_WIFI_NETWORKS:
+                case ControlCommands.LIST_WIFI_NETWORKS:
                     String NetworkString = (String)msg.obj;
                     String[] Networks = NetworkString.split("\\n\\r");
                     listWifiNetworks(Networks);
@@ -175,11 +176,11 @@ public class controller extends ActionBarActivity {
         }
     }
 
-    private void listWifiNetworks(final String[] Networks) {
-        String[] ShowNetworks = new String[Networks.length - 4];
-        for(int i = 2; i < Networks.length - 2; i++) {
-            String[] NetworkInfo = Networks[i].split(",");
-            ShowNetworks[i - 2] = NetworkInfo[1]+" - "+NetworkInfo[4]+"%";
+    private void listWifiNetworks(final String[] networks) {
+        String[] showNetworks = new String[networks.length - 4];
+        for(int i = 2; i < networks.length - 2; i++) {
+            String[] networkInfo = networks[i].split(",");
+            showNetworks[i - 2] = networkInfo[1] + " - " + networkInfo[4]+"%";
         }
 
         // Set an EditText view to get user input
@@ -189,13 +190,13 @@ public class controller extends ActionBarActivity {
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         final Context _this = this;
         new MaterialDialog.Builder(this)
-                .title("Controller Wifi Networks")
+                .title("Controller Wifi networks")
                 .theme(Theme.DARK)
-                .items(ShowNetworks)
+                .items(showNetworks)
                 .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                        final String[] NetworkInfo = Networks[which + 2].split(",");
+                        final String[] NetworkInfo = networks[which + 2].split(",");
                         if (NetworkInfo[3].equals("NONE")) {
                             Controller.setWifiNetwork(NetworkInfo[1]);
                         } else {
