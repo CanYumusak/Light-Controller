@@ -252,16 +252,16 @@ public class controlWidgetProvider extends AppWidgetProvider {
                 int buttonId = Integer.parseInt(data.getSchemeSpecificPart());
                 if(data.getScheme().equals("super")) {
                     if (buttonId == LIGHT_ON) {
-                        Controller.globalOn();
+                        Controller.turnOnLightSources();
                     } else if (buttonId == LIGHT_OFF) {
-                        Controller.globalOff();
+                        Controller.turnOffLightSources();
                     }
                 } else {
                     int zone = Integer.parseInt(data.getScheme());
                     if (buttonId == LIGHT_ON) {
-                        Controller.LightsOn(zone);
+                        Controller.turnOn(zone);
                     } else if (buttonId == LIGHT_OFF) {
-                        Controller.LightsOff(zone);
+                        Controller.turnOff(zone);
                     }
                 }
             } else {

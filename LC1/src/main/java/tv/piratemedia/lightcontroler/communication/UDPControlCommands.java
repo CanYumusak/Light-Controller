@@ -123,7 +123,7 @@ public class UDPControlCommands implements ControlCommands {
     }
 
     @Override
-    public void LightsOn(int zone) {
+    public void turnOn(int zone) {
         byte[] messageBA = new byte[3];
         switch(zone) {
             case 0:
@@ -175,18 +175,18 @@ public class UDPControlCommands implements ControlCommands {
     }
 
     @Override
-    public void globalOn() {
-        LightsOn(0);
+    public void turnOnLightSources() {
+        turnOn(0);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        LightsOn(5);
+        turnOn(5);
     }
 
     @Override
-    public void LightsOff(int zone) {
+    public void turnOff(int zone) {
         byte[] messageBA = new byte[3];
         switch(zone) {
             case 0:
@@ -232,14 +232,14 @@ public class UDPControlCommands implements ControlCommands {
     }
 
     @Override
-    public void globalOff() {
-        LightsOff(0);
+    public void turnOffLightSources() {
+        turnOff(0);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        LightsOff(5);
+        turnOff(5);
     }
 
     @Override
@@ -331,7 +331,7 @@ public class UDPControlCommands implements ControlCommands {
 
     @Override
     public void setToFull(int zone) {
-        LightsOn(zone);
+        turnOn(zone);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -367,7 +367,7 @@ public class UDPControlCommands implements ControlCommands {
 
     @Override
     public void setColorToNight(int zone) {
-        LightsOff(zone);
+        turnOff(zone);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -402,7 +402,7 @@ public class UDPControlCommands implements ControlCommands {
     }
     @Override
     public void setToNight(int zone) {
-        LightsOn(zone);
+        turnOn(zone);
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -450,7 +450,7 @@ public class UDPControlCommands implements ControlCommands {
             brightness = 0;
         }
         if(!sleeping) {
-            LightsOn(zoneid);
+            turnOn(zoneid);
             byte[] messageBA = new byte[3];
             messageBA[0] = 78;
             messageBA[1] = (byte)(values[brightness]);
@@ -502,7 +502,7 @@ public class UDPControlCommands implements ControlCommands {
             Float deg = (float) Math.toRadians(-colors[0]);
             Float dec = (deg/((float)Math.PI*2f))*255f;
             if(LastOn != zoneid) {
-                LightsOn(zoneid);
+                turnOn(zoneid);
             }
             //rotation compensation
             dec = dec + 175;
@@ -529,7 +529,7 @@ public class UDPControlCommands implements ControlCommands {
 
     @Override
     public void toggleDiscoMode(int zoneid) {
-        LightsOn(zoneid);
+        turnOn(zoneid);
         byte[] messageBA = new byte[3];
         messageBA[0] = 77;
         messageBA[1] = 0;

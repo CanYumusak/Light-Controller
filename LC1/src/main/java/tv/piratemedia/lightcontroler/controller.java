@@ -588,9 +588,9 @@ public class controller extends ActionBarActivity {
 //            popupMenu();
 //            return true;
         } else if(id == R.id.action_global_on) {
-            Controller.globalOn();
+            Controller.turnOnLightSources();
         } else if(id == R.id.action_global_off) {
-            Controller.globalOff();
+            Controller.turnOffLightSources();
         } else if(id == android.R.id.home) {
             drawer.openDrawer();
         }
@@ -887,22 +887,22 @@ public class controller extends ActionBarActivity {
                 on.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                     }
                 });
                 off.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Controller.LightsOff(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOff(getArguments().getInt(ARG_SECTION_NUMBER));
                     }
                 });
                 /*io.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                            Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                         } else {
-                            Controller.LightsOff(getArguments().getInt(ARG_SECTION_NUMBER));
+                            Controller.turnOff(getArguments().getInt(ARG_SECTION_NUMBER));
                         }
                     }
                 });*/
@@ -1120,7 +1120,7 @@ public class controller extends ActionBarActivity {
                     public void onStartTrackingTouch(CircularSeekBar seekBar) {
                         brightnessvalue.setAlpha(1.0f);
                         BrightnessCache = 11;
-                        Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                         brightnessTouching = true;
                     }
                 });
@@ -1166,7 +1166,7 @@ public class controller extends ActionBarActivity {
                     public void onStartTrackingTouch(CircularSeekBar seekBar) {
                         warmthvalue.setAlpha(1.0f);
                         WarmthCache = 11;
-                        Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                         warmthTouching = true;
                     }
                 });
@@ -1174,22 +1174,22 @@ public class controller extends ActionBarActivity {
                 on.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                     }
                 });
                 off.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Controller.LightsOff(getArguments().getInt(ARG_SECTION_NUMBER));
+                        Controller.turnOff(getArguments().getInt(ARG_SECTION_NUMBER));
                     }
                 });
                 /*io.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
-                            Controller.LightsOn(getArguments().getInt(ARG_SECTION_NUMBER));
+                            Controller.turnOn(getArguments().getInt(ARG_SECTION_NUMBER));
                         } else {
-                            Controller.LightsOff(getArguments().getInt(ARG_SECTION_NUMBER));
+                            Controller.turnOff(getArguments().getInt(ARG_SECTION_NUMBER));
                         }
                     }
                 });*/

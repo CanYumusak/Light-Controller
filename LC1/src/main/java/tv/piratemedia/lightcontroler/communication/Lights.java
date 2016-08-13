@@ -1,48 +1,56 @@
 package tv.piratemedia.lightcontroler.communication;
 
+import java.util.List;
+
 /**
  * Created by Can 12/08/16.
  */
 
 public class Lights {
 
+    public static final int WHITE_COLOR = 0xFFFFFF;
     private final ControlCommands commands;
+    List<LightSource> lightSources;
 
     public Lights(ControlCommands commands) {
         this.commands = commands;
     }
 
-    void discover() {
+    void discoverLightSources() {
         commands.discover();
     }
 
-    void turnOn(int zone) {
-
+    void turnOn(final LightSource lightSource) {
+        commands.turnOn(lightSource);
     }
 
     void turnOn() {
-
+        for (LightSource lightSource : lightSources) {
+            commands.turnOn(lightSource);
+        }
     }
 
-    void turnOff(int zone) {
-
+    void turnOff(final LightSource lightSource) {
+        commands.turnOff(lightSource);
     }
 
     void turnOff() {
-
+        for (LightSource lightSource : lightSources) {
+            commands.turnOff(lightSource);
+        }
     }
 
-    void setToWhite(int zone) {
-
+    void setToWhite(final LightSource lightSource) {
+        commands.setColor(lightSource, WHITE_COLOR);
     }
-
-    void setBrightnessUpOne() {
-
-    }
-
-    void setBrightnessDownOne() {
-
-    }
+//
+//    void setBrightnessUpOne() {
+//
+//    }
+//
+//    void setBrightnessDownOne() {
+//
+//    }
 
     void setWarmthUpOne() {
 
@@ -101,6 +109,10 @@ public class Lights {
     }
 
     public interface Observer {
+
+        public void didDiscoverLightSource();
+
+
 
     }
 }

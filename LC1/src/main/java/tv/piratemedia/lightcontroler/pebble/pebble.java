@@ -66,12 +66,12 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                     switch(cmd){
                         case 0:
                             //Turning off
-                            contCmd.LightsOff(zone);
+                            contCmd.turnOff(zone);
                             contCmd.appState.setOnOff(zone, false);
                             break;
                         case 1:
                             //Turning on
-                            contCmd.LightsOn(zone);
+                            contCmd.turnOn(zone);
                             contCmd.appState.setOnOff(zone,true);
                             break;
                     }
@@ -82,11 +82,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(zone) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + zone + " was off, turning on");
-                                contcmd.LightsOn(zone);
+                                contcmd.turnOn(zone);
                                 contcmd.appState.setOnOff(zone, true);
                             } else {
                                 Log.d("pebble app", "Zone " + zone + " was on, turning off");
-                                contcmd.LightsOff(zone);
+                                contcmd.turnOff(zone);
                                 contcmd.appState.setOnOff(zone, false);
                             }
                             break;
@@ -95,11 +95,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(zone) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -108,11 +108,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -121,11 +121,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -134,11 +134,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -147,11 +147,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -160,11 +160,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -173,11 +173,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -186,11 +186,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;
@@ -199,11 +199,11 @@ Pebble related activities. Pass through context, and data receiver, so we can th
                             if (contcmd.appState.getOnOff(cmd) == false) {
                                 //TODO add some feedback to the pebble if something has gone wrong?
                                 Log.d("pebble app", "Zone " + cmd + " was off, turning on");
-                                contcmd.LightsOn(cmd);
+                                contcmd.turnOn(cmd);
                                 contcmd.appState.setOnOff(cmd, true);
                             } else {
                                 Log.d("pebble app", "Zone " + cmd + " was on, turning off");
-                                contcmd.LightsOff(cmd);
+                                contcmd.turnOff(cmd);
                                 contcmd.appState.setOnOff(cmd, false);
                             }
                             break;

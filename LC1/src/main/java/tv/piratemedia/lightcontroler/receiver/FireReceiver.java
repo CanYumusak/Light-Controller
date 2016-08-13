@@ -85,10 +85,10 @@ public final class FireReceiver extends BroadcastReceiver
             for (int i = in.length - 1; i >= 0; i--) {
                 TaskerCommand.TASKTYPE task = TaskerCommand.TASKTYPE.values()[Integer.parseInt(in[i][1])];
                 if (task == TaskerCommand.TASKTYPE.ON) {
-                    Controller.LightsOn(Integer.parseInt(in[i][0]));
+                    Controller.turnOn(Integer.parseInt(in[i][0]));
                 }
                 else if (task == TaskerCommand.TASKTYPE.OFF) {
-                    Controller.LightsOff(Integer.parseInt(in[i][0]));
+                    Controller.turnOff(Integer.parseInt(in[i][0]));
                 }
                 else if (task == TaskerCommand.TASKTYPE.WHITE) {
                     Controller.setToWhite(Integer.parseInt(in[i][0]));

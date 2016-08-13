@@ -20,15 +20,15 @@ public interface ControlCommands {
 
     void setWifiNetwork(String SSID);
 
-    void LightsOn(int zone);
+    void turnOn(final LightSource lightSource);
 
-    void globalOn();
+    void turnOnLightSources();
 
-    void LightsOff(int zone);
+    void turnOff(final LightSource lightSource);
 
-    void globalOff();
+    void turnOffLightSources();
 
-    void setToWhite(int zone);
+    void setToWhite(final LightSource lightSource);
 
     void setBrightnessUpOne();
 
@@ -38,8 +38,6 @@ public interface ControlCommands {
 
     void setWarmthDownOne();
 
-    void setToFull(int zone);
-
     void setColorToNight(int zone);
 
     void setToNight(int zone);
@@ -48,7 +46,7 @@ public interface ControlCommands {
 
     void startTimeout();
 
-    void setColor(int zoneid, int color);
+    void setColor(final LightSource lightSource, int color);
 
     void toggleDiscoMode(int zoneid);
 

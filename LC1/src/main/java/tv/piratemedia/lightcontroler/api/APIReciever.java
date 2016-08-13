@@ -115,42 +115,42 @@ public class APIReciever extends BroadcastReceiver {
                     cancelCurrentTasks();
                     switch (intent.getIntExtra("zone", -1)) {
                         case 0:
-                            c.LightsOn(0);
+                            c.turnOn(0);
                             break;
                         case 1:
-                            c.LightsOn(1);
+                            c.turnOn(1);
                             break;
                         case 2:
-                            c.LightsOn(2);
+                            c.turnOn(2);
                             break;
                         case 3:
-                            c.LightsOn(3);
+                            c.turnOn(3);
                             break;
                         case 4:
-                            c.LightsOn(4);
+                            c.turnOn(4);
                             break;
                     }
                 } else if (intent.getStringExtra("type").equals(TYPE_WHITE)) {
                     cancelCurrentTasks();
                     switch (intent.getIntExtra("zone", -1)) {
                         case 0:
-                            c.LightsOn(9);
+                            c.turnOn(9);
                             break;
                         case 1:
-                            c.LightsOn(5);
+                            c.turnOn(5);
                             break;
                         case 2:
-                            c.LightsOn(6);
+                            c.turnOn(6);
                             break;
                         case 3:
-                            c.LightsOn(7);
+                            c.turnOn(7);
                             break;
                         case 4:
-                            c.LightsOn(8);
+                            c.turnOn(8);
                             break;
                     }
                 } else if (intent.getStringExtra("type").equals(TYPE_SUPER)) {
-                    c.globalOn();
+                    c.turnOnLightSources();
                 }
                 break;
             case LIGHT_OFF_INTENT:
@@ -158,42 +158,42 @@ public class APIReciever extends BroadcastReceiver {
                     cancelCurrentTasks();
                     switch (intent.getIntExtra("zone", -1)) {
                         case 0:
-                            c.LightsOff(0);
+                            c.turnOff(0);
                             break;
                         case 1:
-                            c.LightsOff(1);
+                            c.turnOff(1);
                             break;
                         case 2:
-                            c.LightsOff(2);
+                            c.turnOff(2);
                             break;
                         case 3:
-                            c.LightsOff(3);
+                            c.turnOff(3);
                             break;
                         case 4:
-                            c.LightsOff(4);
+                            c.turnOff(4);
                             break;
                     }
                 } else if (intent.getStringExtra("type").equals(TYPE_WHITE)) {
                     cancelCurrentTasks();
                     switch (intent.getIntExtra("zone", -1)) {
                         case 0:
-                            c.LightsOff(9);
+                            c.turnOff(9);
                             break;
                         case 1:
-                            c.LightsOff(5);
+                            c.turnOff(5);
                             break;
                         case 2:
-                            c.LightsOff(6);
+                            c.turnOff(6);
                             break;
                         case 3:
-                            c.LightsOff(7);
+                            c.turnOff(7);
                             break;
                         case 4:
-                            c.LightsOff(8);
+                            c.turnOff(8);
                             break;
                     }
                 } else if (intent.getStringExtra("type").equals(TYPE_SUPER)) {
-                    c.globalOff();
+                    c.turnOffLightSources();
                 }
                 break;
             case LIGHT_COLOR_INTENT:
@@ -215,19 +215,19 @@ public class APIReciever extends BroadcastReceiver {
                         cancelCurrentTasks();
                         switch (zone) {
                             case 0:
-                                c.LightsOn(0);
+                                c.turnOn(0);
                                 break;
                             case 1:
-                                c.LightsOn(1);
+                                c.turnOn(1);
                                 break;
                             case 2:
-                                c.LightsOn(2);
+                                c.turnOn(2);
                                 break;
                             case 3:
-                                c.LightsOn(3);
+                                c.turnOn(3);
                                 break;
                             case 4:
-                                c.LightsOn(4);
+                                c.turnOn(4);
                                 break;
                         }
                         c.setToWhite(zone);
@@ -238,19 +238,19 @@ public class APIReciever extends BroadcastReceiver {
                         cancelCurrentTasks();
                         switch (zone) {
                             case 0:
-                                c.LightsOn(9);
+                                c.turnOn(9);
                                 break;
                             case 1:
-                                c.LightsOn(5);
+                                c.turnOn(5);
                                 break;
                             case 2:
-                                c.LightsOn(6);
+                                c.turnOn(6);
                                 break;
                             case 3:
-                                c.LightsOn(7);
+                                c.turnOn(7);
                                 break;
                             case 4:
-                                c.LightsOn(8);
+                                c.turnOn(8);
                                 break;
                         }
                         c.setToFull(zone);
@@ -275,19 +275,19 @@ public class APIReciever extends BroadcastReceiver {
                     if(duration <= 900 && duration > 30) {
                         switch (zone) {
                             case 0:
-                                c.LightsOn(9);
+                                c.turnOn(9);
                                 break;
                             case 1:
-                                c.LightsOn(5);
+                                c.turnOn(5);
                                 break;
                             case 2:
-                                c.LightsOn(6);
+                                c.turnOn(6);
                                 break;
                             case 3:
-                                c.LightsOn(7);
+                                c.turnOn(7);
                                 break;
                             case 4:
-                                c.LightsOn(8);
+                                c.turnOn(8);
                                 break;
                         }
                         for(int i = 0; i < 10; i++) {
@@ -320,19 +320,19 @@ public class APIReciever extends BroadcastReceiver {
                     if(duration <= 900 && duration > 30) {
                         switch (zone) {
                             case 0:
-                                c.LightsOn(9);
+                                c.turnOn(9);
                                 break;
                             case 1:
-                                c.LightsOn(5);
+                                c.turnOn(5);
                                 break;
                             case 2:
-                                c.LightsOn(6);
+                                c.turnOn(6);
                                 break;
                             case 3:
-                                c.LightsOn(7);
+                                c.turnOn(7);
                                 break;
                             case 4:
-                                c.LightsOn(8);
+                                c.turnOn(8);
                                 break;
                         }
                         c.setToFull(zone);
@@ -378,19 +378,19 @@ public class APIReciever extends BroadcastReceiver {
                     } else {
                         switch (Zone) {
                             case 0:
-                                c.LightsOn(9);
+                                c.turnOn(9);
                                 break;
                             case 1:
-                                c.LightsOn(5);
+                                c.turnOn(5);
                                 break;
                             case 2:
-                                c.LightsOn(6);
+                                c.turnOn(6);
                                 break;
                             case 3:
-                                c.LightsOn(7);
+                                c.turnOn(7);
                                 break;
                             case 4:
-                                c.LightsOn(8);
+                                c.turnOn(8);
                                 break;
                         }
                         if(in) {
