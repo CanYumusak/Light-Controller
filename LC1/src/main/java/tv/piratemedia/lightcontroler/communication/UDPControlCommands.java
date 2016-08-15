@@ -122,155 +122,155 @@ public class UDPControlCommands implements ControlCommands {
         }
     }
 
-    @Override
-    public void turnOn(int zone) {
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 0:
-                messageBA[0] = 66;
-                break;
-            case 1:
-                messageBA[0] = 69;
-                break;
-            case 2:
-                messageBA[0] = 71;
-                break;
-            case 3:
-                messageBA[0] = 73;
-                break;
-            case 4:
-                messageBA[0] = 75;
-                break;
-            case 5:
-                messageBA[0] = 56;
-                break;
-            case 6:
-                messageBA[0] = 61;
-                break;
-            case 7:
-                messageBA[0] = 55;
-                break;
-            case 8:
-                messageBA[0] = 50;
-                break;
-            case 9:
-                messageBA[0] = 53;
-                break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        LastOn = zone;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        appState.setOnOff(zone, true);
-    }
+//    @Override
+//    public void turnOn(final LightSource lightSource) {
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 0:
+//                messageBA[0] = 66;
+//                break;
+//            case 1:
+//                messageBA[0] = 69;
+//                break;
+//            case 2:
+//                messageBA[0] = 71;
+//                break;
+//            case 3:
+//                messageBA[0] = 73;
+//                break;
+//            case 4:
+//                messageBA[0] = 75;
+//                break;
+//            case 5:
+//                messageBA[0] = 56;
+//                break;
+//            case 6:
+//                messageBA[0] = 61;
+//                break;
+//            case 7:
+//                messageBA[0] = 55;
+//                break;
+//            case 8:
+//                messageBA[0] = 50;
+//                break;
+//            case 9:
+//                messageBA[0] = 53;
+//                break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        LastOn = zone;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        appState.setOnOff(zone, true);
+//    }
 
     @Override
     public void turnOnLightSources() {
-        turnOn(0);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        turnOn(5);
+//        turnOn(0);
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        turnOn(5);
     }
 
     @Override
-    public void turnOff(int zone) {
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 0:
-                messageBA[0] = 65;
-                break;
-            case 1:
-                messageBA[0] = 70;
-                break;
-            case 2:
-                messageBA[0] = 72;
-                break;
-            case 3:
-                messageBA[0] = 74;
-                break;
-            case 4:
-                messageBA[0] = 76;
-                break;
-            case 5:
-                messageBA[0] = 59;
-                break;
-            case 6:
-                messageBA[0] = 51;
-                break;
-            case 7:
-                messageBA[0] = 58;
-                break;
-            case 8:
-                messageBA[0] = 54;
-                break;
-            case 9:
-                messageBA[0] = 57;
-                break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-        appState.setOnOff(zone, false);
+    public void turnOff(final LightSource lightSource) {
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 0:
+//                messageBA[0] = 65;
+//                break;
+//            case 1:
+//                messageBA[0] = 70;
+//                break;
+//            case 2:
+//                messageBA[0] = 72;
+//                break;
+//            case 3:
+//                messageBA[0] = 74;
+//                break;
+//            case 4:
+//                messageBA[0] = 76;
+//                break;
+//            case 5:
+//                messageBA[0] = 59;
+//                break;
+//            case 6:
+//                messageBA[0] = 51;
+//                break;
+//            case 7:
+//                messageBA[0] = 58;
+//                break;
+//            case 8:
+//                messageBA[0] = 54;
+//                break;
+//            case 9:
+//                messageBA[0] = 57;
+//                break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//        appState.setOnOff(zone, false);
     }
 
     @Override
     public void turnOffLightSources() {
-        turnOff(0);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        turnOff(5);
+//        turnOff(0);
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        turnOff(5);
     }
 
     @Override
-    public void setToWhite(int zone) {
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 0:
-                messageBA[0] = (byte)194;
-                break;
-            case 1:
-                messageBA[0] = (byte)197;
-                break;
-            case 2:
-                messageBA[0] = (byte)199;
-                break;
-            case 3:
-                messageBA[0] = (byte)201;
-                break;
-            case 4:
-                messageBA[0] = (byte)203;
-                break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-        appState.removeColor(zone);
+    public void setToWhite(final LightSource lightSource) {
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 0:
+//                messageBA[0] = (byte)194;
+//                break;
+//            case 1:
+//                messageBA[0] = (byte)197;
+//                break;
+//            case 2:
+//                messageBA[0] = (byte)199;
+//                break;
+//            case 3:
+//                messageBA[0] = (byte)201;
+//                break;
+//            case 4:
+//                messageBA[0] = (byte)203;
+//                break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//        appState.removeColor(zone);
     }
 
     @Override
@@ -329,112 +329,112 @@ public class UDPControlCommands implements ControlCommands {
         }
     }
 
-    @Override
-    public void setToFull(int zone) {
-        turnOn(zone);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 5:
-                messageBA[0] = (byte)184;
-                break;
-            case 6:
-                messageBA[0] = (byte)189;
-                break;
-            case 7:
-                messageBA[0] = (byte)183;
-                break;
-            case 8:
-                messageBA[0] = (byte)178;
-                break;
-            case 9:
-                messageBA[0] = (byte)181;
-                break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-    }
+//    @Ovslic void setToFull(final LightSource lightSource) {
+//        turnOn(zone);
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 5:
+//                messageBA[0] = (byte)184;
+//                break;
+//            case 6:
+//                messageBA[0] = (byte)189;
+//                break;
+//            case 7:
+//                messageBA[0] = (byte)183;
+//                break;
+//            case 8:
+//                messageBA[0] = (byte)178;
+//                break;
+//            case 9:
+//                messageBA[0] = (byte)181;
+//                break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//    }
 
-    @Override
-    public void setColorToNight(int zone) {
-        turnOff(zone);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 0:
-                    messageBA[0] = (byte)193;
-                    break;
-            case 1:
-                    messageBA[0] = (byte)198;
-                    break;
-            case 2:
-                    messageBA[0] = (byte)200;
-                    break;
-            case 3:
-                    messageBA[0] = (byte)202;
-                    break;
-            case 4:
-                    messageBA[0] = (byte)204;
-                    break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-    }
-    @Override
-    public void setToNight(int zone) {
-        turnOn(zone);
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        byte[] messageBA = new byte[3];
-        switch(zone) {
-            case 5:
-                messageBA[0] = (byte)187;
-                break;
-            case 6:
-                messageBA[0] = (byte)179;
-                break;
-            case 7:
-                messageBA[0] = (byte)186;
-                break;
-            case 8:
-                messageBA[0] = (byte)182;
-                break;
-            case 9:
-                messageBA[0] = (byte)185;
-                break;
-        }
-        messageBA[1] = 0;
-        messageBA[2] = 85;
-        try {
-            UDPC.sendMessage(messageBA);
-        } catch (IOException e) {
-            e.printStackTrace();
-            //add alert to tell user we cant send command
-        }
-    }
+//    @Override
+//    public void setColorToNight(final LightSource lightSource) {
+//        turnOff(zone);
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 0:
+//                    messageBA[0] = (byte)193;
+//                    break;
+//            case 1:
+//                    messageBA[0] = (byte)198;
+//                    break;
+//            case 2:
+//                    messageBA[0] = (byte)200;
+//                    break;
+//            case 3:
+//                    messageBA[0] = (byte)202;
+//                    break;
+//            case 4:
+//                    messageBA[0] = (byte)204;
+//                    break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//    }
+
+//    @Override
+//    public void setToNight(final LightSource lightSource) {
+//        turnOn(zone);
+//        try {
+//            Thread.sleep(100);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        byte[] messageBA = new byte[3];
+//        switch(zone) {
+//            case 5:
+//                messageBA[0] = (byte)187;
+//                break;
+//            case 6:
+//                messageBA[0] = (byte)179;
+//                break;
+//            case 7:
+//                messageBA[0] = (byte)186;
+//                break;
+//            case 8:
+//                messageBA[0] = (byte)182;
+//                break;
+//            case 9:
+//                messageBA[0] = (byte)185;
+//                break;
+//        }
+//        messageBA[1] = 0;
+//        messageBA[2] = 85;
+//        try {
+//            UDPC.sendMessage(messageBA);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            //add alert to tell user we cant send command
+//        }
+//    }
 
     private int[] values = {2,3,4,5,8,9,10,11,13,14,15,16,17,18,19,20,21,23,24,25};
     private int LastBrightness = 20;
@@ -442,7 +442,7 @@ public class UDPControlCommands implements ControlCommands {
     private boolean finalSend = false;
     public boolean touching = false;
     @Override
-    public void setBrightness(int zoneid, int brightness) {
+    public void setBrightness(LightSource zoneid, int brightness) {
         if(brightness >= values.length) {
             brightness = values.length - 1;
         }
@@ -528,8 +528,8 @@ public class UDPControlCommands implements ControlCommands {
     }
 
     @Override
-    public void toggleDiscoMode(int zoneid) {
-        turnOn(zoneid);
+    public void toggleDiscoMode(LightSource lightSource) {
+        turnOn(lightSource);
         byte[] messageBA = new byte[3];
         messageBA[0] = 77;
         messageBA[1] = 0;
@@ -629,7 +629,7 @@ public class UDPControlCommands implements ControlCommands {
     private FileOutputStream fd;
     private int[] strobeColors = new int[4];
     @Override
-    public void startMeasuringVol(final int zone) {
+    public void startMeasuringVol(final LightSource lightSource) {
         strobeColors[0] = Color.parseColor("#FF7400");
         strobeColors[1] = Color.parseColor("#FFAA00");
         strobeColors[2] = Color.parseColor("#00FEFE");
@@ -659,7 +659,7 @@ public class UDPControlCommands implements ControlCommands {
                             if(i > 3) {
                                 i = 0;
                             }
-                            setColor(zone,strobeColors[i]);
+                            setColor(lightSource, strobeColors[i]);
                         }
                         TimeUnit.MILLISECONDS.sleep(50);
                     }
@@ -672,7 +672,7 @@ public class UDPControlCommands implements ControlCommands {
     }
 
     @Override
-    public void stopMeasuringVol() {
+    public void stopMeasuringVol(final LightSource lightSource) {
         measuring = false;
         try {
             mr.stop();

@@ -91,7 +91,7 @@ import tv.piratemedia.lightcontroler.pebble.pebble;
 import tv.piratemedia.lightcontroler.wear.DataLayerListenerService;
 
 
-public class controller extends ActionBarActivity {
+public class Controller extends ActionBarActivity {
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -283,7 +283,7 @@ public class controller extends ActionBarActivity {
     protected void onPause(){
         super.onPause();
         //Pause the pebble data reciever so we dont cause issues
-        Log.d("controller","pausing pebble");
+        Log.d("Controller","pausing pebble");
         if (dataReceiver != null) {
             unregisterReceiver(dataReceiver);
             dataReceiver = null;
@@ -642,9 +642,9 @@ public class controller extends ActionBarActivity {
         Fragment z6 = null;
         Fragment z7 = null;
         Fragment z8 = null;
-        private controller mThis;
+        private tv.piratemedia.lightcontroler.Controller mThis;
 
-        public ControllerPager(FragmentManager fm, controller t) {
+        public ControllerPager(FragmentManager fm, tv.piratemedia.lightcontroler.Controller t) {
             super(fm);
             mThis = t;
         }
@@ -813,12 +813,12 @@ public class controller extends ActionBarActivity {
                 modeSpinner.setAdapter(modeAdapter);
 
                 //Return State
-                //io.setChecked(((controller)getActivity()).appState.getOnOff(getArguments().getInt(ARG_SECTION_NUMBER)));
-                brightness.setProgress(((controller)getActivity()).appState.getBrightness(getArguments().getInt(ARG_SECTION_NUMBER)));
-                int savedColor = ((controller)getActivity()).appState.getColor(getArguments().getInt(ARG_SECTION_NUMBER));
+                //io.setChecked(((Controller)getActivity()).appState.getOnOff(getArguments().getInt(ARG_SECTION_NUMBER)));
+                brightness.setProgress(((tv.piratemedia.lightcontroler.Controller)getActivity()).appState.getBrightness(getArguments().getInt(ARG_SECTION_NUMBER)));
+                int savedColor = ((tv.piratemedia.lightcontroler.Controller)getActivity()).appState.getColor(getArguments().getInt(ARG_SECTION_NUMBER));
                 if(savedColor < 0) {
                     color.setColor(savedColor);
-                    ((controller) getActivity()).setActionbarColor(savedColor);
+                    ((tv.piratemedia.lightcontroler.Controller) getActivity()).setActionbarColor(savedColor);
                 }
 
                 if (micStarted) {
@@ -858,7 +858,7 @@ public class controller extends ActionBarActivity {
                     public void onColorChanged(int i) {
                         if(!disabled) {
                             Controller.setColor(getArguments().getInt(ARG_SECTION_NUMBER), i);
-                            ((controller) getActivity()).setActionbarColor(i);
+                            ((tv.piratemedia.lightcontroler.Controller) getActivity()).setActionbarColor(i);
                             /*ToggleButton io = (ToggleButton) rootView.findViewById(R.id.onoff);
                             io.setChecked(true);*/
                         }
@@ -868,7 +868,8 @@ public class controller extends ActionBarActivity {
                 brightness.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        Controller.setBrightness(getArguments().getInt(ARG_SECTION_NUMBER), progress);
+                        //                            TODO
+//                        Controller.setBrightness(getArguments().getInt(ARG_SECTION_NUMBER), progress);
                         /*ToggleButton io = (ToggleButton) rootView.findViewById(R.id.onoff);
                         io.setChecked(true);*/
                     }
@@ -910,7 +911,8 @@ public class controller extends ActionBarActivity {
                 disco.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Controller.toggleDiscoMode(getArguments().getInt(ARG_SECTION_NUMBER));
+                        //                            TODO
+//                        Controller.toggleDiscoMode(getArguments().getInt(ARG_SECTION_NUMBER));
                         /*ToggleButton io = (ToggleButton) rootView.findViewById(R.id.onoff);
                         io.setChecked(true);*/
                     }
@@ -940,7 +942,7 @@ public class controller extends ActionBarActivity {
                         Controller.setToWhite(getArguments().getInt(ARG_SECTION_NUMBER));
                         /*ToggleButton io = (ToggleButton) rootView.findViewById(R.id.onoff);
                         io.setChecked(true);*/
-                        ((controller) getActivity()).setActionbarColor(Color.parseColor("#ffee58"));
+                        ((tv.piratemedia.lightcontroler.Controller) getActivity()).setActionbarColor(Color.parseColor("#ffee58"));
                     }
                 });
 
@@ -973,11 +975,13 @@ public class controller extends ActionBarActivity {
                     public void onClick(View v) {
                         if (!micStarted) {
                             toggleMic.setText("Stop Listening");
-                            Controller.startMeasuringVol(getArguments().getInt(ARG_SECTION_NUMBER));
+//                            TODO
+//                            Controller.startMeasuringVol(getArguments().getInt(ARG_SECTION_NUMBER));
                             micStarted = true;
                         } else {
                             toggleMic.setText("Start Listening");
-                            Controller.stopMeasuringVol();
+                            //                            TODO
+//                            Controller.stopMeasuringVol(lightSource);
                             micStarted = false;
                         }
                     }
@@ -1073,11 +1077,11 @@ public class controller extends ActionBarActivity {
                 Button night = (Button) rootView.findViewById(R.id.night);
 
                 //Return State
-                //io.setChecked(((controller)getActivity()).appState.getOnOff(getArguments().getInt(ARG_SECTION_NUMBER)));
-                brightness.setProgress(((controller)getActivity()).appState.getBrightness(getArguments().getInt(ARG_SECTION_NUMBER)));
-                int savedColor = ((controller)getActivity()).appState.getColor(getArguments().getInt(ARG_SECTION_NUMBER));
+                //io.setChecked(((Controller)getActivity()).appState.getOnOff(getArguments().getInt(ARG_SECTION_NUMBER)));
+                brightness.setProgress(((tv.piratemedia.lightcontroler.Controller)getActivity()).appState.getBrightness(getArguments().getInt(ARG_SECTION_NUMBER)));
+                int savedColor = ((tv.piratemedia.lightcontroler.Controller)getActivity()).appState.getColor(getArguments().getInt(ARG_SECTION_NUMBER));
                 if(savedColor < 0) {
-                    ((controller) getActivity()).setActionbarColor(getResources().getColor(R.color.colorPrimary));
+                    ((tv.piratemedia.lightcontroler.Controller) getActivity()).setActionbarColor(getResources().getColor(R.color.colorPrimary));
                 }
 
                 brightness.setProgress(10);

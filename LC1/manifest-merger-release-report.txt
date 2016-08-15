@@ -91,7 +91,7 @@ ADDED from AndroidManifest.xml:20:9
 		ADDED from AndroidManifest.xml:20:20
 	android:value
 		ADDED from AndroidManifest.xml:20:69
-activity#tv.piratemedia.lightcontroler.controller
+activity#tv.piratemedia.lightcontroler.Controller
 ADDED from AndroidManifest.xml:22:9
 	android:label
 		ADDED from AndroidManifest.xml:24:13

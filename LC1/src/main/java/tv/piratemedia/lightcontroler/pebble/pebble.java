@@ -6,8 +6,9 @@ import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.PebbleKit.PebbleDataReceiver;
 import com.getpebble.android.kit.util.PebbleDictionary;
 import java.util.UUID;
+
+import tv.piratemedia.lightcontroler.Controller;
 import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
-import tv.piratemedia.lightcontroler.controller;
 
 /*
 created by mrwhale 18/06/2016
@@ -42,8 +43,8 @@ Pebble related activities. Pass through context, and data receiver, so we can th
         Log.d("Pebble app", "Pebble " + (isConnected ? "is" : "is not") + " connected!");
         //TODO probably should put a if statement to check if pebble is conncted/if we are on the right wifi, so we dont do any work we done need to
         // Create a new receiver to get AppMessages from the C app
-        // Create a new controller instance so we can send commands to the wifi controller
-        final controller mCont = new controller();
+        // Create a new Controller instance so we can send commands to the wifi Controller
+        final Controller mCont = new Controller();
         final UDPControlCommands contCmd;
         contCmd = new UDPControlCommands(ctx, mCont.mHandler);
 

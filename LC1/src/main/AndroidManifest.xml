@@ -28,7 +28,7 @@
             android:value="AEdPqrEAAAAIb0-S1PPn7w6c-GnAr1gF5Pjnwru29t2s8hc5xQ" />
 
         <activity
-            android:name=".controller"
+            android:name=".Controller"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,12 +40,12 @@
             android:name=".controlPreferences"
             android:icon="@drawable/icon"
             android:label="@string/app_settings"
-            android:parentActivityName=".controller" />
+            android:parentActivityName=".Controller" />
         <activity
             android:name=".switchWidgetConfig"
             android:icon="@drawable/icon"
             android:label="@string/app_widget_settings"
-            android:parentActivityName=".controller">
+            android:parentActivityName=".Controller">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
@@ -54,7 +54,7 @@
             android:name=".controlWidgetConfig"
             android:icon="@drawable/icon"
             android:label="@string/app_widget_settings"
-            android:parentActivityName=".controller">
+            android:parentActivityName=".Controller">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

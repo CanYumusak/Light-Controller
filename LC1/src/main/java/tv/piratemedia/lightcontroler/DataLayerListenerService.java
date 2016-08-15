@@ -19,9 +19,9 @@ public class DataLayerListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         super.onMessageReceived(messageEvent);
         // if ("/MESSAGE".equals(messageEvent.getPath())) {
-        // Create a new controller instance so we can send commands to the wifi controller
+        // Create a new Controller instance so we can send commands to the wifi Controller
         Log.d(TAG, "message received" + messageEvent.getPath());
-        controller mCont = new controller();
+        Controller mCont = new Controller();
         UDPControlCommands cmd;
         cmd = new UDPControlCommands(this, mCont.mHandler);
         //A switch to find out what message was sent from the watch

@@ -112,7 +112,7 @@ public class UDPConnection {
     }
 
     public void destroyUDPC() {
-        Log.d("controller", "destroy");
+        Log.d("Controller", "destroy");
         if(server != null) {
             server.stop_UDP_Server();
         }

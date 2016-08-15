@@ -21,9 +21,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import tv.piratemedia.lightcontroler.Controller;
 import tv.piratemedia.lightcontroler.R;
 import tv.piratemedia.lightcontroler.communication.UDPControlCommands;
-import tv.piratemedia.lightcontroler.controller;
 
 public class DataLayerListenerService extends WearableListenerService {
     private static final String TAG = "DataLayer";
@@ -43,8 +43,8 @@ public class DataLayerListenerService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         super.onMessageReceived(messageEvent);
         // if ("/MESSAGE".equals(messageEvent.getPath())) {
-        // Create a new controller instance so we can send commands to the wifi controller
-        controller mCont = new controller();
+        // Create a new Controller instance so we can send commands to the wifi Controller
+        Controller mCont = new Controller();
         UDPControlCommands cmd;
         cmd = new UDPControlCommands(this, mCont.mHandler);
         //A switch to find out what message was sent from the watch

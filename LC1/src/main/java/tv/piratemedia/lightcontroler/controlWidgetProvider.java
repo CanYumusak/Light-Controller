@@ -169,7 +169,7 @@ public class controlWidgetProvider extends AppWidgetProvider {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             remoteViews.setOnClickPendingIntent(R.id.settings, pendingIntent);
 
-            intent = new Intent(context, controller.class);
+            intent = new Intent(context, tv.piratemedia.lightcontroler.Controller.class);
             pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
             remoteViews.setOnClickPendingIntent(R.id.app, pendingIntent);
 
